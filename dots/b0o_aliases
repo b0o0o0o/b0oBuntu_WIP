@@ -1,0 +1,97 @@
+############################################################
+#
+#
+#  8    .d88b.                 8 w
+#  88b. 8P  Y8 .d8b.      .d88 8   .d88 d88b .d88b d88b 
+#  8  8 8b  d8 8' .8      8  8 8 8 8  8 `Yb. 8.dP' `Yb. 
+#  88P' `Y88P' `Y8P' wwww `Y88 8 8 `Y88 Y88P `Y88P Y88P 
+#
+#
+#
+#     ( ( (          '\/`         _     _       .      .   
+#   '. ___ .'        (oo)       o' \,=./ `o   .  .:::.     
+#  '  (> <) '       (_`'_)         (o o)        :(o o):  . 
+# ooO--(_)--Ooo-Ooo--_!!_--ooO-Ooo--(_)--Ooo-ooO--(_)--Ooo-
+#
+#
+#
+#  Add this line :
+#         source /chemin/vers/fichier/aliases
+#
+#  To :
+#         ~/.zshrc  or  ~/.bashrc or both ( no care xD )
+#
+#_______________________________________________________________________
+#
+# !!!!   MAGIC POWER   !!!!
+
+alias sudo='sudo '
+
+# Trick to have ALL aliases available with sudo <3
+#
+#_______________________________________________________________________
+#
+
+#
+# SYSADMIN
+#_______________________________________________________________________
+#
+# Ridin' in di OS
+alias dl='cd ~/Downloads'
+alias doc='cd ~/Documents'
+alias dot='cd ~/Documents/dots'
+alias tmp='pushd $(mktemp -d)' #Tmp directory on Demand xD
+
+
+# Show me Dat Ass
+alias l='f(){ exa --group-directories-first "$@";  unset -f f; }; f'
+alias ll='f(){ exa -ll --group-directories-first "$@";  unset -f f; }; f'
+alias la='f(){ exa -lla --group-directories-first "$@";  unset -f f; }; f'
+alias t='f(){ exa -Tll "$@";  unset -f f; }; f'
+alias t2='f(){ exa -Tll -L 2 "$@";  unset -f f; }; f'
+alias t3='f(){ exa -Tll -L 3 "$@";  unset -f f; }; f'
+
+# Basic Command Beautify
+alias rm='trash-put'
+alias cp='cp -i'
+alias wget="wget --no-check-certificate"
+alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+
+# Puuuuuuullllll ... Fire Some Apps
+alias b='bat'
+alias v='nvim'
+alias c='code'
+alias C='code .'
+alias p='python'
+alias gog='google-chrome'
+
+# Display Some Informations
+alias ipa='bash ~/Documents/dots/scripts/ip.sh'
+alias ipl='ip -br --color a | grep -vF DOWN | cut -d/ -f1'
+alias get-ip='curl -sS ipinfo.io'
+alias show-disk-io='watch -cd -- iostat -h'
+alias show-open-ports="sudo ss -latepun | grep -i listen"
+alias get-meteo='curl -s "https://wttr.in/Bordeaux?format=\n+%l:\n\n+Temperature:+%t+feel+%f\n\n+%C-+%c\n\n+Vent:+%w++-++Precipitations:+%p(/3h)\n\n+Lune:+%m+jour%M\n\n+Sunrise:+%S++-++Sunset:+%s\n"'
+alias cheat='f(){ curl -s "cheat.sh/$1";  unset -f f; }; f'
+
+# Tools
+alias flameshotz='while true; do flameshot full -p /tmp/; sleep 1; done' #RafaleScreenshots
+alias toqrcode='qrencode -t ANSI -o -'
+
+# SysAdmin Fast Mooves
+alias aptitall='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt purge -y'
+alias dpkgi='sudo dpkg -i ./*.deb'
+alias b64d='base64 -d'
+alias b64e='base64 -w 0'
+alias cpy='xclip -selection clipboard'
+alias paste='xclip -selection clipboard -o'
+
+# Tmux Shortcuts
+alias tn='tmux new'
+alias ta='tmux attach'
+alias tmux-bg='f(){ tmux new-window -d zsh -c "echo $@; $@; zsh";  unset -f f; }; f'
+alias tmux-split='f(){ tmux split-window -d zsh -c "echo $@; $@; zsh";  unset -f f; }; f'
+
+# Cleaning
+alias clean-crash='sudo /bin/rm -rf /var/crash/*'
+alias clean-swap='sudo swapoff -a && sudo swapon -a'

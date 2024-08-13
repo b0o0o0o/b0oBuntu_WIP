@@ -1,0 +1,41 @@
+---
+- name: Check if ESM apt hook configuration file exists
+  stat:
+    path: /etc/apt/apt.conf.d/20apt-esm-hook.conf
+  register: esm_hook_file
+
+- name: Disable Ubuntu Pro Esm Spammy Messages OMFG
+  replace:
+    path: /etc/apt/apt.conf.d/20apt-esm-hook.conf
+    regexp: '^([^#].*)$'
+    replace: '#\1'
+  become: true
+  when: esm_hook_file.stat.exists
+
+- name: Update apt repo/cache
+  ansible.builtin.apt:
+    update_cache: yes
+    force_apt_get: yes
+    cache_valid_time: 3600
+  become: true
+
+- name: Upgrade all packages
+  ansible.builtin.apt:
+    upgrade: yes
+    force_apt_get: yes
+  become: true
+
+- name: Install Packages
+  ansible.builtin.package:
+    name: '{{ item }}'
+    state: latest
+  loop: '{{ default_packages }}'
+  become: true
+
+- name: Install Packages Cleanup
+  ansible.builtin.package:
+    name: '{{ item }}'
+    state: absent
+  loop: '{{ default_packages_gone }}'
+  become: true
+

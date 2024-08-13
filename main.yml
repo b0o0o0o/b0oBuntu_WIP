@@ -1,0 +1,11 @@
+---
+- name: Welcome to BooBuntu! ^.^
+  hosts: localhost
+  connection: local
+  roles:
+    - role: 'roles/base-install'
+      tags: 'base-install'
+    - role: 'roles/gui-tools'
+      tags: 'gui-tools'
+      users:
+        - username: '{{ ansible_user_id }}'
