@@ -7,5 +7,7 @@
       tags: 'base-install'
     - role: 'roles/gui-tools'
       tags: 'gui-tools'
-      users:
+    - role: 'roles/hardening'
+      tags: 'hardening' 
+       users:
         - username: '{{ ansible_user_id }}'

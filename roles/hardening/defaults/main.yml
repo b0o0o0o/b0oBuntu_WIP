@@ -1,0 +1,10 @@
+---
+# defaults file for hardening
+services_to_disable:
+  - tor
+  - nxserver
+  # - cups
+  # - ssh
+
+secure_services_to_install:
+  - apparmor
